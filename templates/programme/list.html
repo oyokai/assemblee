@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des Programmes{% endblock %}
+
+{% block content %}
+<div class="programme-container">
+    <h1>Liste des Programmes</h1>
+    {% if programmes %}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Horaire</th>
+            <th>Poste 01</th>
+            <th>Poste 02</th>
+            <th>Poste 03</th>
+            <th>Poste 04</th>
+            <th>Poste 05</th>
+            <th>Poste 06</th>
+            <th>Poste 07</th>
+            <th>Poste 08</th>
+            <th>Poste 09</th>
+            <th>Poste 10</th>
+            <th>Poste 11</th>
+            <th>Poste 12</th>
+            <th>Poste 13</th>
+            <th>Poste 14</th>
+            <th>Poste 15</th>
+            <th>Poste 16</th>
+            <th>Poste 17</th>
+            <th>Poste 18</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for programme in programmes %}
+          <tr>
+            <td>{{ programme.id }}</td>
+            <td>{{ programme.horairePlanning }}</td>
+            <td>{{ programme.poste_01 }}</td>
+            <td>{{ programme.poste_02 }}</td>
+            <td>{{ programme.poste_03 }}</td>
+            <td>{{ programme.poste_04 }}</td>
+            <td>{{ programme.poste_05 }}</td>
+            <td>{{ programme.poste_06 }}</td>
+            <td>{{ programme.poste_07 }}</td>
+            <td>{{ programme.poste_08 }}</td>
+            <td>{{ programme.poste_09 }}</td>
+            <td>{{ programme.poste_10 }}</td>
+            <td>{{ programme.poste_11 }}</td>
+            <td>{{ programme.poste_12 }}</td>
+            <td>{{ programme.poste_13 }}</td>
+            <td>{{ programme.poste_14 }}</td>
+            <td>{{ programme.poste_15 }}</td>
+            <td>{{ programme.poste_16 }}</td>
+            <td>{{ programme.poste_17 }}</td>
+            <td>{{ programme.poste_18 }}</td>
+
+            <td>
+              <form action="{{ url_for('programme.edit_programme', id=programme.id) }}" method="get" 
+                style="display:inline-block; background: none; border: none; padding: 0; margin: 0;">
+                <button type="submit" class="btn-edit">Modifier</button>
+              </form>
+              <form action="{{ url_for('programme.delete_programme', id=programme.id) }}" method="post" 
+                style="display:inline-block; background: none; border: none; padding: 0; margin: 0;">
+                <button type="submit" class="btn-delete">Supprimer</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>Aucun programme trouvé.</p>
+    {% endif %}
+    <a href="{{ url_for('programme.generate_programme') }}">Générer un nouveau programme</a>
+
+</div>
+<a href="{{ url_for('index') }}">Retour au menu principal</a>
+{% endblock %}
